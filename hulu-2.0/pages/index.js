@@ -3,12 +3,13 @@ import { Inter } from 'next/font/google'
 import Header from '@/components/Header';
 import Nav from '@/components/Nav';
 import Result from '@/components/Result';
+import request from '@/utils/request';
 
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
-
+export default function Home(props) {
+  console.log(props)
   return (
     <div>
       <Header/>
@@ -16,4 +17,17 @@ export default function Home() {
       <Result/>
     </div>
   );
+}
+
+export async function getServerSideProps(context){
+  const genre = context.query.genre;
+
+  const requests = await fetch(`https://api.themoviedb.org/3${request[genre]?.url || request.fetchtrending.url}`).then((res)=>res.json())
+
+  // request(genre)?.url || 
+  return{
+    props: {
+      results: requests.results,
+    }
+  }
 }
