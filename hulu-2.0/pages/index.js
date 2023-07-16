@@ -8,13 +8,12 @@ import request from '@/utils/request';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home(props) {
-  console.log(props)
+export default function Home({results}) {
   return (
     <div>
       <Header/>
       <Nav/>
-      <Result/>
+      <Result results={results}/>
     </div>
   );
 }

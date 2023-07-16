@@ -1,8 +1,9 @@
 import React from 'react'
+import Thumbnail from './Thumbnail'
 
-function Result() {
+function Result({results}) {
   return (
-    <div>Result</div>
+    <div>{results.map((result)=>(<Thumbnail key={results.id} result={result}/>))}</div>
   )
 }
 
